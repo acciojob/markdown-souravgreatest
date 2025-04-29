@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { marked } from 'marked'; // import marked
 import '../styles/styles.css';
 
 const MarkdownEditor = () => {
@@ -9,11 +10,11 @@ const MarkdownEditor = () => {
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
-      setOutput(text);
+      setOutput(marked.parse(text)); // convert markdown to HTML
       setLoading(false);
-    }, 0);
+    }, 2000);
 
-    return () => clearTimeout(timer); // Cleanup on re-render
+    return () => clearTimeout(timer);
   }, [text]);
 
   return (
@@ -26,7 +27,10 @@ const MarkdownEditor = () => {
       {loading ? (
         <h1 className='loading'>loading...</h1>
       ) : (
-        <h1 className='preview'>{output}</h1>
+        <div
+          className='preview'
+          dangerouslySetInnerHTML={{ __html: output }} // Render HTML output
+        ></div>
       )}
     </div>
   );
