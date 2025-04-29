@@ -1,0 +1,18 @@
+html,body{
+    background-color: grey;
+}
+div{
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100vw;
+}
+textarea{
+    background-color: gainsboro;
+    width: 50%;
+    height: 95vh;
+}
+span{
+    background-color: grey;
+    width: 50%;
+}
